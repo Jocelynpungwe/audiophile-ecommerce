@@ -83,6 +83,7 @@ const NavContainer = styled.nav`
     .nav-center {
       display: grid;
       grid-template-columns: auto 1fr auto;
+      grid-column-gap: 100px;
       align-items: center;
     }
     .nav-links {

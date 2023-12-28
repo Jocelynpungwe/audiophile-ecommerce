@@ -57,6 +57,9 @@ const Wrapper = styled.section`
   padding-top: 55px;
   margin-bottom: 60px;
 
+  .homepage-product-zx9-speaker {
+    margin-top: -40px;
+  }
   .oval-container {
     display: flex;
     justify-content: center;
@@ -159,6 +162,7 @@ const Wrapper = styled.section`
 
     .homepage-product-zx9-speaker {
       display: flex;
+      margin-top: 0;
     }
     .oval-shape-one {
       img {
