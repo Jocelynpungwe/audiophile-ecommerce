@@ -18,7 +18,7 @@ const YouMayLikeProduct = (props) => {
 }
 const Wrapper = styled.section`
   text-align: center;
-  margin-bottom: -85px;
+
   img {
     width: 100%;
     min-height: 50vh;
@@ -35,6 +35,9 @@ const Wrapper = styled.section`
     letter-spacing: 1.714px;
     text-transform: uppercase;
     margin: 15px 0;
+  }
+  @media (min-width: 768px) {
+    margin-bottom: -85px;
   }
 `
 export default YouMayLikeProduct
