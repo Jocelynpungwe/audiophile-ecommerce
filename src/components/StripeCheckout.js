@@ -120,166 +120,132 @@ const CheckoutForm = () => {
   }
   return (
     <div>
-      {succeeded ? (
-        <article className="success-container">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="64"
-            height="64"
-            viewBox="0 0 64 64"
-            fill="none"
-          >
-            <circle cx="32" cy="32" r="32" fill="#D87D4A" />
-            <path
-              d="M20.7539 33.3328L27.5054 40.0843L43.3085 24.2812"
-              stroke="white"
-              stroke-width="4"
+      (
+      <form id="payment-form" onSubmit={handleSubmit}>
+        <h3>BILLING DETAILS</h3>
+        <div className="grid-layout-container">
+          <div>
+            <label htmlFor="fullName">Name</label>
+            <input
+              type="text"
+              placeholder="Alexel Ward"
+              id="fullName"
+              name="fullName"
+              value={billing.fullName}
+              onChange={changeBilling}
+              required
             />
-          </svg>
-          <h4 className="thank-message">THANK YOU FOR YOUR ORDER</h4>
-          <p className="result-message">
-            Payment succeeded, see the result in your
-            <a href={`https://dashboard.stripe.com/test/payments`}>
-              {' '}
-              Stripe dashboard.
-            </a>{' '}
-          </p>
-          <div className="sucessfull-grand-total">
-            <h4 className="grand-total">GRAND TOTAL</h4>
-            <h4 className="actual-total">{formatPrice(total_amount)}</h4>
           </div>
-          <p>Redirecting to home page shortly</p>
+          <div>
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              placeholder="alexi@mail.com"
+              id="email"
+              name="email"
+              value={billing.email}
+              onChange={changeBilling}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <input
+              type="number"
+              placeholder="+1 202-555-0136"
+              id="phoneNumber"
+              name="phoneNumber"
+              value={billing.phoneNumber}
+              onChange={changeBilling}
+              required
+            />
+          </div>
+        </div>
+        {/* shipping */}
+        <h3>SHIPPING INFO</h3>
+        <div className="grid-layout-container">
+          <div className="form-address-container">
+            <label htmlFor="address">Your Address</label>
+            <input
+              type="text"
+              placeholder="1137 Williams Avenue"
+              id="address"
+              name="address"
+              value={billing.address}
+              onChange={changeBilling}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="zipCode">ZIP Code</label>
+            <input
+              type="number"
+              placeholder="10001"
+              id="zipCode"
+              name="zipCode"
+              value={billing.zipCode}
+              onChange={changeBilling}
+              required
+            />
+          </div>
+          <div>
+            <label>City</label>
+            <input
+              type="text"
+              placeholder="New York"
+              id="city"
+              name="city"
+              value={billing.city}
+              onChange={changeBilling}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="country">Country</label>
+            <input
+              type="text"
+              placeholder="United State"
+              id="country"
+              name="country"
+              value={billing.country}
+              onChange={changeBilling}
+              required
+            />
+          </div>
+        </div>
+        <article className="grand-total-container">
+          <h4>GRAND TOTAL</h4>
+          <p>{formatPrice(total_amount)}</p>
+          <p>Test Card Number: 4242 4242 4242 4242</p>
         </article>
-      ) : (
-        <form id="payment-form" onSubmit={handleSubmit}>
-          <h3>BILLING DETAILS</h3>
-          <div className="grid-layout-container">
-            <div>
-              <label htmlFor="fullName">Name</label>
-              <input
-                type="text"
-                placeholder="Alexel Ward"
-                id="fullName"
-                name="fullName"
-                value={billing.fullName}
-                onChange={changeBilling}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="email">Email Address</label>
-              <input
-                type="email"
-                placeholder="alexi@mail.com"
-                id="email"
-                name="email"
-                value={billing.email}
-                onChange={changeBilling}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="phoneNumber">Phone Number</label>
-              <input
-                type="number"
-                placeholder="+1 202-555-0136"
-                id="phoneNumber"
-                name="phoneNumber"
-                value={billing.phoneNumber}
-                onChange={changeBilling}
-                required
-              />
-            </div>
-          </div>
-          {/* shipping */}
-          <h3>SHIPPING INFO</h3>
-          <div className="grid-layout-container">
-            <div className="form-address-container">
-              <label htmlFor="address">Your Address</label>
-              <input
-                type="text"
-                placeholder="1137 Williams Avenue"
-                id="address"
-                name="address"
-                value={billing.address}
-                onChange={changeBilling}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="zipCode">ZIP Code</label>
-              <input
-                type="number"
-                placeholder="10001"
-                id="zipCode"
-                name="zipCode"
-                value={billing.zipCode}
-                onChange={changeBilling}
-                required
-              />
-            </div>
-            <div>
-              <label>City</label>
-              <input
-                type="text"
-                placeholder="New York"
-                id="city"
-                name="city"
-                value={billing.city}
-                onChange={changeBilling}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="country">Country</label>
-              <input
-                type="text"
-                placeholder="United State"
-                id="country"
-                name="country"
-                value={billing.country}
-                onChange={changeBilling}
-                required
-              />
-            </div>
-          </div>
-          <article className="grand-total-container">
-            <h4>GRAND TOTAL</h4>
-            <p>{formatPrice(total_amount)}</p>
-            <p>Test Card Number: 4242 4242 4242 4242</p>
-          </article>
 
-          <CardElement
-            id="card-element"
-            options={cardStyle}
-            onChange={handleChange}
-          />
-          <button disabled={processing || disabled || succeeded} id="submit">
-            <span id="button-text">
-              {processing ? (
-                <div className="spinner" id="spinner"></div>
-              ) : (
-                'Pay'
-              )}
-            </span>
-          </button>
-          {/* Show any error that happens when processing the payment */}
-          {error && (
-            <div className="card-error" role="alert">
-              {error}
-            </div>
-          )}
-          {/* Show a success message upon completion */}
-          <p className={succeeded ? 'result-message' : 'result-message hidden'}>
-            Payment succeeded, see the result in your
-            <a href={`https://dashboard.stripe.com/test/payments`}>
-              {' '}
-              Stripe dashboard.
-            </a>{' '}
-            Refresh the page to pay again.
-          </p>
-        </form>
-      )}
+        <CardElement
+          id="card-element"
+          options={cardStyle}
+          onChange={handleChange}
+        />
+        <button disabled={processing || disabled || succeeded} id="submit">
+          <span id="button-text">
+            {processing ? <div className="spinner" id="spinner"></div> : 'Pay'}
+          </span>
+        </button>
+        {/* Show any error that happens when processing the payment */}
+        {error && (
+          <div className="card-error" role="alert">
+            {error}
+          </div>
+        )}
+        {/* Show a success message upon completion */}
+        <p className={succeeded ? 'result-message' : 'result-message hidden'}>
+          Payment succeeded, see the result in your
+          <a href={`https://dashboard.stripe.com/test/payments`}>
+            {' '}
+            Stripe dashboard.
+          </a>{' '}
+          Refresh the page to pay again.
+        </p>
+      </form>
+      )
     </div>
   )
 }

@@ -8,6 +8,8 @@ import Checkout from './CheckoutPage'
 import PrivateRoute from './PrivateRoute'
 import AuthWrapper from './AuthWrapper'
 import ProductCategoryPage from './ProductCategoryPage'
+import CancelPage from './CancelPage'
+import SuccessPage from './SuccessPage'
 
 export {
   Home,
@@ -20,4 +22,6 @@ export {
   PrivateRoute,
   AuthWrapper,
   ProductCategoryPage,
+  CancelPage,
+  SuccessPage,
 }

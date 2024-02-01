@@ -1,3 +1,4 @@
+import '@stripe/stripe-js'
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Navbar, Sidebar, Footer } from './components'
@@ -12,6 +13,8 @@ import {
   PrivateRoute,
   AuthWrapper,
   ProductCategoryPage,
+  CancelPage,
+  SuccessPage,
 } from './pages'
 function App() {
   return (
@@ -27,6 +30,8 @@ function App() {
           <Route path="products/:category" element={<ProductCategoryPage />} />
           <Route path="products/:category/:id" element={<SingleProduct />} />
           <Route path="checkout" element={<Checkout />} />
+          <Route path="success" element={<SuccessPage />} />
+          <Route path="cancel" element={<CancelPage />} />
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
