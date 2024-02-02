@@ -47,6 +47,7 @@ const CartTotals = () => {
   })
 
   const checkoutOptions = {
+    billingAddressCollection: 'required',
     lineItems: newItem,
     mode: 'payment',
     successUrl: `${window.location.origin}/success`,
@@ -81,13 +82,9 @@ const CartTotals = () => {
             order total :<span>{formatPrice(total_amount + shipping_fee)}</span>
           </h4>
         </article>
-        <button
-          disabled={isLoading}
-          onClick={redirectToCheckout}
-          className="btn"
-        >
-          {isLoading ? 'Loading...' : 'proceed to checkout'}
-        </button>
+        <Link to="/checkout" className="btn">
+          proceed to checkout
+        </Link>
       </div>
     </Wrapper>
   )
